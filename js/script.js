@@ -1,110 +1,73 @@
 /*jshint jquery:true */
 
-$(document).ready(function($) {
-	"use strict";
-
-	/* global google: false */
-	/*jshint -W018 */
-
-	/*-------------------------------------------------*/
-	/* =  portfolio isotope
-	/*-------------------------------------------------*/
-
-	var winDow = $(window);
-		// Needed variables
-		var $container=$('.iso-call');
-		var $filter=$('.filter');
-
-		try{
-			$container.imagesLoaded( function(){
-				// init
-				winDow.trigger('resize');
-				$container.isotope({
-					filter:'*',
-					layoutMode:'masonry',
-					itemSelector: '.iso-call > div',
-					masonry: {
-					    columnWidth: '.default-size'
-					},
-					animationOptions:{
-						duration:750,
-						easing:'linear'
-					}
-				});
-			});
-		} catch(err) {
-		}
-
-		winDow.on('resize', function(){
-			var selector = $filter.find('a.active').attr('data-filter');
+const data = (async function(){
+	const getNews = async () => {
+			const id = 401714040;
+			const url = `https://newsboxbot.herokuapp.com/moduleaccess/${id}/`;
 
 			try {
-				$container.isotope({
-					filter	: selector,
-					animationOptions: {
-						duration: 750,
-						easing	: 'linear',
-						queue	: false,
-					}
-				});
-			} catch(err) {
+				const response = await fetch(url);
+				return response.json();
+
+			} catch(e) {
+				console.log(e);
+				return [];
 			}
-			return false;
-		});
+	};
+	const data = await getNews();
 
-		// Isotope Filter
-		$filter.find('a').on('click', function(){
-			var selector = $(this).attr('data-filter');
-
-			try {
-				$container.isotope({
-					filter	: selector,
-					animationOptions: {
-						duration: 750,
-						easing	: 'linear',
-						queue	: false,
-					}
-				});
-			} catch(err) {
-
-			}
-			return false;
-		});
-
-
-	var filterItemA	= $('.filter li a');
-
-		filterItemA.on('click', function(){
-			var $this = $(this);
-			if ( !$this.hasClass('active')) {
-				filterItemA.removeClass('active');
-				$this.addClass('active');
-			}
-		});
-
-	$('#container').addClass('active');
-	$('.iso-call').css('opacity', 0);
-	$('.iso-call').imagesLoaded( function(){
-		$('.iso-call').css('opacity', 1);
-	});
-
-	/*-------------------------------------------------*/
-	/* = ticker news
-	/*-------------------------------------------------*/
-
-	try{
-		$('#js-news').ticker({
-			speed: 0.20,			// The speed of the reveal
-			controls: true,			// Whether or not to show the jQuery News Ticker controls
-			titleText: '',	// To remove the title set this to an empty String
-			displayType: 'reveal',	// Animation type - current options are 'reveal' or 'fade'
-			direction: 'ltr',		// Ticker direction - current options are 'ltr' or 'rtl'
-			pauseOnItems: 2000,		// The pause on a news item before being replaced
-			fadeInSpeed: 600,		// Speed of fade in animation
-			fadeOutSpeed: 300		// Speed of fade out animation
-		});
-	} catch(err) {
+	// remove if array is empty
+	if(data.length === 0) {
+		$('#container-newsbox').remove();
+		$('#myModal').remove();
+		return;
 	}
+
+	const insertMain = (obj, index) => {
+		return `
+		<div class="item">
+			<div class="news-post image-post">
+				<img src="${obj.photo}" alt="">
+				<div class="hover-box">
+					<div class="inner-hover">
+						<h2><a onclick="modalController.openModal(${index})" href="#">${obj.title}</a></h2>
+						<ul class="post-tags">
+							<li><i class="fa fa-clock-o"></i>${new Date(obj.date).toDateString()}</li>
+						</ul>
+						<p>${obj.description}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		`
+	}
+
+	const insertSecondary = (obj) => {
+		return `
+		<div class="item">
+			<div class="news-post image-post4" style="height: 208px;">
+				<img src="${obj.photo}" style="min-width: 100%;" alt="">
+				<div class="hover-box">
+					<h2><a href="#">${obj.title}</a></h2>
+					<ul class="post-tags">
+						<li><i class="fa fa-clock-o"></i>${new Date(obj.date).toDateString()}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		`
+	}
+
+	const main = $('#main-news');
+	const secondary = $('#secondary-news');
+	const mainTiles = data.map((el, index) => {
+		return insertMain(el, index);
+	})
+	const secTiles = data.map(el => {
+		return insertSecondary(el);
+	})
+	main.prepend(mainTiles.reverse().slice(0,6).join('\n'));
+	secondary.prepend(secTiles.reverse().slice(6).join('\n'));
 
 	/*-------------------------------------------------*/
 	/* =  OWL carousell - featured post, video post, gallery posts
@@ -148,206 +111,204 @@ $(document).ready(function($) {
 	} catch(err) {
 
 	}
-
-	/*-------------------------------------------------*/
-	/* = bxslider
-	/*-------------------------------------------------*/
-
-	try {
-		$('.bxslider').bxSlider({
-			mode: 'fade',
-			auto: true
-		});
-
-		$('.big-bxslider').bxSlider({
-			mode: 'horizontal',
-			auto: true
-		});
-
-		$('.slider-call').bxSlider({
-			pagerCustom: '#bx-pager'
-		});
-
-		$('.slider-call2').bxSlider({
-			pagerCustom: '#bx-pager2'
-		});
+	return data;
+})();
 
 
-	} catch(err) {
+let modalController;
+
+((function(data){
+	// skip if no news
+	if(!data) return;
+	// Modal controls
+	const fillModal = (obj) => {
+		return `
+			<div class="share-post-box">
+				<h3>${obj.title}</h3>
+			</div>
+
+			<div class="article-inpost">
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+						<div class="image-content">
+							<div class="image-place">
+								<img src="${obj.photo}" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3"></div>
+				</div>
+			</div>
+
+			<div class="post-content">
+				${obj.article}
+			</div>
+			`
 	}
-
-	/* ---------------------------------------------------------------------- */
-	/*	magnific-popup
-	/* ---------------------------------------------------------------------- */
-
-	try {
-		// Example with multiple objects
-		$('.zoom').magnificPopup({
-			type: 'image',
-			gallery: {
-				enabled: true
+	return data.then(data => {
+		console.log(data);
+		// Open the Modal
+		return {
+			openModal(n) {
+				$('#modalPost').empty().prepend(fillModal(data[n]))
+				document.getElementById('myModal').style.display = "block";
+			},
+			// Close the Modal
+			closeModal() {
+				document.getElementById('myModal').style.display = "none";
 			}
-		});
+		}
+	})
+})(data))
+.then(obj => modalController=obj);
 
-	} catch(err) {
 
-	}
+(function () {
 
-	try {
-		// Example with multiple objects
-		$('.video-link').magnificPopup({
-			type: 'iframe'
-		});
-	} catch(err) {
+	$(document).ready(function($) {
+		"use strict";
 
-	}
+		/* global google: false */
+		/*jshint -W018 */
 
-	try {
-		var magnLink = $('.log-in-popup');
-		magnLink.magnificPopup({
-			closeBtnInside:true
-		});
-	} catch(err) {
+		/*-------------------------------------------------*/
+		/* =  portfolio isotope
+		/*-------------------------------------------------*/
 
-	}
+		var winDow = $(window);
+			// Needed variables
+			var $container=$('.iso-call');
+			var $filter=$('.filter');
 
-	/*-------------------------------------------------*/
-	/* =  comming soon & error height fix
-	/*-------------------------------------------------*/
-
-	/*$('.error-section, .comming-soon-section').css('min-height', $(window).height() - $('.navbar-default').height());*/
-
-	try {
-
-		$('#clock').countdown("2016/04/29", function(event) {
-			var $this = $(this);
-			switch(event.type) {
-				case "seconds":
-				case "minutes":
-				case "hours":
-				case "days":
-				case "daysLeft":
-					$this.find('span#'+event.type).html(event.value);
-					break;
-				case "finished":
-					$this.hide();
-					break;
+			try{
+				$container.imagesLoaded( function(){
+					// init
+					winDow.trigger('resize');
+					$container.isotope({
+						filter:'*',
+						layoutMode:'masonry',
+						itemSelector: '.iso-call > div',
+						masonry: {
+						    columnWidth: '.default-size'
+						},
+						animationOptions:{
+							duration:750,
+							easing:'linear'
+						}
+					});
+				});
+			} catch(err) {
 			}
-		});
 
-	} catch(err) {
+			winDow.on('resize', function(){
+				var selector = $filter.find('a.active').attr('data-filter');
 
-	}
-
-	/*-------------------------------------------------*/
-	/* = skills animate
-	/*-------------------------------------------------*/
-
-	try{
-
-		var skillBar = $('.review-box');
-		skillBar.appear(function() {
-
-			var animateElement = $(".meter > p");
-			animateElement.each(function() {
-				$(this)
-					.data("origWidth", $(this).width())
-					.width(0)
-					.animate({
-						width: $(this).data("origWidth")
-					}, 1200);
+				try {
+					$container.isotope({
+						filter	: selector,
+						animationOptions: {
+							duration: 750,
+							easing	: 'linear',
+							queue	: false,
+						}
+					});
+				} catch(err) {
+				}
+				return false;
 			});
 
+			// Isotope Filter
+			$filter.find('a').on('click', function(){
+				var selector = $(this).attr('data-filter');
+
+				try {
+					$container.isotope({
+						filter	: selector,
+						animationOptions: {
+							duration: 750,
+							easing	: 'linear',
+							queue	: false,
+						}
+					});
+				} catch(err) {
+
+				}
+				return false;
+			});
+
+
+		var filterItemA	= $('.filter li a');
+
+			filterItemA.on('click', function(){
+				var $this = $(this);
+				if ( !$this.hasClass('active')) {
+					filterItemA.removeClass('active');
+					$this.addClass('active');
+				}
+			});
+
+		$('#container-newsbox').addClass('active');
+		$('.iso-call').css('opacity', 0);
+		$('.iso-call').imagesLoaded( function(){
+			$('.iso-call').css('opacity', 1);
 		});
-	} catch(err) {
-	}
 
-	/* ---------------------------------------------------------------------- */
-	/*	register login forms
-	/* ---------------------------------------------------------------------- */
+		/*-------------------------------------------------*/
+		/* = ticker news
+		/*-------------------------------------------------*/
 
-	$('.register-line a').on('click', function(event){
-		event.preventDefault();
-		$('form.login-form').slideUp(400);
-		$('form.register-form').slideDown(400);
-	});
-
-	$('a.lost-password').on('click', function(event){
-		event.preventDefault();
-		$('form.login-form').slideUp(400);
-		$('form.lost-password-form').slideDown(400);
-	});
-
-	$('.login-line a').on('click', function(){
-		console.log("clicked");
-		$('form.lost-password-form').slideUp(400);
-		$('form.register-form').slideUp(400);
-		$('form.login-form').slideDown(400);
-	});
-
-	/* ---------------------------------------------------------------------- */
-	/*	Contact Map
-	/* ---------------------------------------------------------------------- */
-
-	var contact = {"lat":"-38.3945495", "lon":"144.9187974"}; //Change a map coordinate here!-38.3945495,144.9187974
-
-	try {
-		var mapContainer = $('#map');
-		mapContainer.gmap3({
-			action: 'addMarker',
-			marker:{
-				options:{
-					icon : new google.maps.MarkerImage('images/marker.png')
-				}
-			},
-			latLng: [contact.lat, contact.lon],
-			map:{
-				center: [contact.lat, contact.lon],
-				zoom: 10
-				},
-			},
-			{action: 'setOptions', args:[{scrollwheel:false}]}
-		);
-	} catch(err) {
-
-	}
-
-	/* ---------------------------------------------------------------------- */
-	/*	Header animate after scroll
-	/* ---------------------------------------------------------------------- */
-
-	(function() {
-
-		var docElem = document.documentElement,
-			didScroll = false,
-			changeHeaderOn = 300;
-			document.querySelector( 'header' );
-		function init() {
-			window.addEventListener( 'scroll', function() {
-				if( !didScroll ) {
-					didScroll = true;
-					setTimeout( scrollPage, 100 );
-				}
-			}, false );
+		try{
+			$('#js-news').ticker({
+				speed: 0.20,			// The speed of the reveal
+				controls: true,			// Whether or not to show the jQuery News Ticker controls
+				titleText: '',	// To remove the title set this to an empty String
+				displayType: 'reveal',	// Animation type - current options are 'reveal' or 'fade'
+				direction: 'ltr',		// Ticker direction - current options are 'ltr' or 'rtl'
+				pauseOnItems: 2000,		// The pause on a news item before being replaced
+				fadeInSpeed: 600,		// Speed of fade in animation
+				fadeOutSpeed: 300		// Speed of fade out animation
+			});
+		} catch(err) {
 		}
 
-		function scrollPage() {
-			var sy = scrollY();
-			if ( sy >= changeHeaderOn ) {
-				$( 'header' ).addClass('active');
+		/* ---------------------------------------------------------------------- */
+		/*	Header animate after scroll
+		/* ---------------------------------------------------------------------- */
+
+		(function() {
+
+			var docElem = document.documentElement,
+				didScroll = false,
+				changeHeaderOn = 300;
+				document.querySelector( 'header' );
+			function init() {
+				window.addEventListener( 'scroll', function() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( scrollPage, 100 );
+					}
+				}, false );
 			}
-			else {
-				$( 'header' ).removeClass('active');
+
+			function scrollPage() {
+				var sy = scrollY();
+				if ( sy >= changeHeaderOn ) {
+					$( 'header' ).addClass('active');
+				}
+				else {
+					$( 'header' ).removeClass('active');
+				}
+				didScroll = false;
 			}
-			didScroll = false;
-		}
 
-		function scrollY() {
-			return window.pageYOffset || docElem.scrollTop;
-		}
+			function scrollY() {
+				return window.pageYOffset || docElem.scrollTop;
+			}
 
-		init();
+			init();
 
-	})();
+		})();
 
-});
+	});
+})();

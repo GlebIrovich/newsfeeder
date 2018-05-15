@@ -533,14 +533,14 @@ header.active .nav-list-container {
 body {
   background: #fafafa;
 }
-#container {
+#container-newsbox {
   opacity: 0;
   transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
 }
-#container.active {
+#container-newsbox.active {
   opacity: 1;
 }
 p {
@@ -5552,7 +5552,7 @@ footer .footer-last-line nav.footer-nav ul li:first-child:before {
   }
 }
 @media (max-width: 1199px) {
-  #container {
+  #container-newsbox {
     overflow: hidden;
   }
   .navbar-default .navbar-right {
