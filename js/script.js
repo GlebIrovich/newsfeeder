@@ -1,5 +1,11 @@
 /*jshint jquery:true */
 
+// set colors
+(function(){
+	$('#container-newsbox section').css('background', '#222');
+})()
+
+
 const data = (async function(){
 	const getNews = async () => {
 			const id = 401714040;
@@ -42,13 +48,13 @@ const data = (async function(){
 		`
 	}
 
-	const insertSecondary = (obj) => {
+	const insertSecondary = (obj, index) => {
 		return `
 		<div class="item">
 			<div class="news-post image-post4" style="height: 208px;">
 				<img src="${obj.photo}" style="min-width: 100%;" alt="">
 				<div class="hover-box">
-					<h2><a href="#">${obj.title}</a></h2>
+					<h2><a onclick="modalController.openModal(${index})">${obj.title}</a></h2>
 					<ul class="post-tags">
 						<li><i class="fa fa-clock-o"></i>${new Date(obj.date).toDateString()}</li>
 					</ul>
@@ -63,8 +69,8 @@ const data = (async function(){
 	const mainTiles = data.map((el, index) => {
 		return insertMain(el, index);
 	})
-	const secTiles = data.map(el => {
-		return insertSecondary(el);
+	const secTiles = data.map((el, index) => {
+		return insertSecondary(el, index);
 	})
 	main.prepend(mainTiles.reverse().slice(0,6).join('\n'));
 	secondary.prepend(secTiles.reverse().slice(6).join('\n'));
@@ -123,21 +129,25 @@ let modalController;
 	// Modal controls
 	const fillModal = (obj) => {
 		return `
-			<div class="share-post-box">
+			<!-- <div class="share-post-box">
 				<h3>${obj.title}</h3>
-			</div>
+			</div> -->
 
 			<div class="article-inpost">
 				<div class="row">
-					<div class="col-md-3"></div>
 					<div class="col-md-6">
 						<div class="image-content">
 							<div class="image-place">
-								<img src="${obj.photo}" alt="">
+								<img src="${obj.photo}" style="box-shadow: 0 0 15px rgba(0,0,0,0.7);" alt="">
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3"></div>
+					<div class="col-md-6">
+						<div style="text-align: right; margin-right: 20px;">
+							<h1>${obj.title}</h1>
+							<h3>${obj.description}</h1>
+						</div>
+					</div>
 				</div>
 			</div>
 

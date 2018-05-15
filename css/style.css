@@ -901,9 +901,9 @@ div.block-content {
   margin-right: 305px;
   position: relative;
   overflow: hidden;
-  background: #ffffff;
-  border-left: 1px solid #f0f0f0;
-  border-right: 1px solid #f0f0f0;
+  background: #e0e0e0;
+  /* border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0; */
 }
 div.block-content .advertisement {
   margin-bottom: 30px;
@@ -1092,7 +1092,7 @@ section.feature-video .owl-theme .owl-controls .owl-buttons div.owl-next:hover:a
   font-size: 12px;
 }
 section.photo-line-section {
-  background: #222222;
+  /* background: #222222; */
   padding: 10px 0;
 }
 section.photo-line-section .owl-wrapper .owl-theme .owl-controls {
@@ -1392,7 +1392,7 @@ section.photo-line-section:hover .owl-wrapper .owl-theme .owl-controls {
 /*-------------------------------------------------*/
 .heading-news3 {
   padding: 50px 15px 40px;
-  background: #222222;
+  /* background: #222222; */
 }
 .heading-news3 .heading-news-box .owl-wrapper .item {
   padding: 0 15px;
