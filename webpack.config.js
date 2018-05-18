@@ -3,14 +3,19 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 
 module.exports = {
   entry: ['babel-polyfill', './src/js/app.js'],
   output: {
-    filename: 'bundle.js',
+    filename: 'newsfeeder.min.js',
     path: path.resolve(__dirname, 'dist')
   },
+  mode: 'production',
+
   module: {
     rules: [
       {
@@ -29,32 +34,33 @@ module.exports = {
       },
        {
          test: /\.(png|woff|woff2|eot|ttf|svg|gif)$/,
-         loader: 'url-loader?limit=100000'
-       },
-       // {
-       //   test: /\.(png|svg|jpg|gif)$/,
-       //   use: [
-       //     'file-loader'
-       //   ]
-       // },
-       // {
-       //   test: /\.(woff|woff2|eot|ttf|otf)$/,
-       //   use: [
-       //     'file-loader'
-       //   ]
-       // },
-       {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
+         loader: 'file-loader?limit=100000',
+         options: {
+          name: 'assets/[name].[ext]'
         }
-      }
+       },
+      //  {
+      //   test: /\.js$/,
+      //   exclude: /(node_modules|bower_components)/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {
+      //       presets: ['@babel/preset-env']
+      //     }
+      //   }
+      // }
    ]
- },
+  },
+   optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true // set to true if you want JS source maps
+        }),
+        new OptimizeCSSAssetsPlugin({})
+      ]
+  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new webpack.ProvidePlugin({
@@ -63,9 +69,8 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "[name].css",
+      filename: "newsfeeder.min.css",
       chunkFilename: "[id].css"
     }),
 
@@ -73,6 +78,10 @@ module.exports = {
       title: 'Custom template',
       // Load a custom template (lodash by default see the FAQ for details)
       template: './src/temp.html'
-    })
+    }),
+
+    new CopyWebpackPlugin([
+    { from: 'src/js/newsfeeder.config.js', to: 'newsfeeder.config.js' }
+    ])
   ]
 };

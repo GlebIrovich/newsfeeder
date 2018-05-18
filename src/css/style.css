@@ -1091,11 +1091,11 @@ section.feature-video .owl-theme .owl-controls .owl-buttons div.owl-next:hover:a
   color: #333333;
   font-size: 12px;
 }
-section.photo-line-section {
+section.small-tiles {
   /* background: #222222; */
   padding: 10px 0;
 }
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls {
+section.small-tiles .owl-wrapper .owl-theme .owl-controls {
   top: 50%;
   margin-top: -10px;
   width: 100%;
@@ -1108,34 +1108,34 @@ section.photo-line-section .owl-wrapper .owl-theme .owl-controls {
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
 }
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev {
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev {
   float: left;
   margin: 0;
   margin-left: 20px;
 }
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next {
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next {
   float: right;
   margin: 0;
   margin-right: 20px;
 }
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev,
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next {
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev,
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next {
   border: 1px solid #666666;
   background: #333333;
 }
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:hover,
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:hover {
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:hover,
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:hover {
   background: #f5d76e;
 }
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:after,
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:after {
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:after,
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:after {
   color: #ffffff;
 }
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:hover:after,
-section.photo-line-section .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:hover:after {
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:hover:after,
+section.small-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:hover:after {
   color: #333333;
 }
-section.photo-line-section:hover .owl-wrapper .owl-theme .owl-controls {
+section.small-tiles:hover .owl-wrapper .owl-theme .owl-controls {
   opacity: 1;
 }
 /*-------------------------------------------------*/
@@ -1390,14 +1390,14 @@ section.photo-line-section:hover .owl-wrapper .owl-theme .owl-controls {
 /*-------------------------------------------------*/
 /* =  home4
 /*-------------------------------------------------*/
-.heading-news3 {
+.big-tiles {
   padding: 50px 15px 40px;
   /* background: #222222; */
 }
-.heading-news3 .heading-news-box .owl-wrapper .item {
+.big-tiles .heading-news-box .owl-wrapper .item {
   padding: 0 15px;
 }
-.heading-news3 .news-post.image-post2 .hover-box:before {
+.big-tiles .news-post.image-post2 .hover-box:before {
   content: '';
   position: absolute;
   top: 9px;
@@ -1411,38 +1411,38 @@ section.photo-line-section:hover .owl-wrapper .owl-theme .owl-controls {
   -o-transition: all 0.2s ease-in-out;
   opacity: 0;
 }
-.heading-news3 .news-post.image-post2 .hover-box {
+.big-tiles .news-post.image-post2 .hover-box {
   transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
 }
-.heading-news3 .news-post.image-post2 .hover-box .inner-hover {
+.big-tiles .news-post.image-post2 .hover-box .inner-hover {
   z-index: 2;
 }
-.heading-news3 .news-post.image-post2 .hover-box .inner-hover h2 {
+.big-tiles .news-post.image-post2 .hover-box .inner-hover h2 {
   font-size: 24px;
   text-transform: uppercase;
   font-weight: 900;
   line-height: 30px;
   max-height: 60px;
 }
-.heading-news3 .news-post.image-post2:hover .hover-box {
+.big-tiles .news-post.image-post2:hover .hover-box {
   background: rgba(255, 255, 255, 0.9);
 }
-.heading-news3 .news-post.image-post2:hover .hover-box .inner-hover h2 a {
+.big-tiles .news-post.image-post2:hover .hover-box .inner-hover h2 a {
   color: #333333;
 }
-.heading-news3 .news-post.image-post2:hover .hover-box .inner-hover ul.post-tags li {
+.big-tiles .news-post.image-post2:hover .hover-box .inner-hover ul.post-tags li {
   color: #999999;
 }
-.heading-news3 .news-post.image-post2:hover .hover-box .inner-hover ul.post-tags li a {
+.big-tiles .news-post.image-post2:hover .hover-box .inner-hover ul.post-tags li a {
   color: #999999;
 }
-.heading-news3 .news-post.image-post2:hover .hover-box:before {
+.big-tiles .news-post.image-post2:hover .hover-box:before {
   opacity: 1;
 }
-.heading-news3 .owl-wrapper .owl-theme .owl-controls {
+.big-tiles .owl-wrapper .owl-theme .owl-controls {
   top: 50%;
   margin-top: -35px;
   width: 100%;
@@ -1454,18 +1454,18 @@ section.photo-line-section:hover .owl-wrapper .owl-theme .owl-controls {
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
 }
-.heading-news3 .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev {
+.big-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev {
   float: left;
   margin: 0;
   margin-left: 20px;
 }
-.heading-news3 .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next {
+.big-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next {
   float: right;
   margin: 0;
   margin-right: 20px;
 }
-.heading-news3 .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev,
-.heading-news3 .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next {
+.big-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev,
+.big-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next {
   width: 70px;
   height: 70px;
   -webkit-border-radius: 50%;
@@ -1477,15 +1477,15 @@ section.photo-line-section:hover .owl-wrapper .owl-theme .owl-controls {
   border: none;
   background: rgba(34, 34, 34, 0.5);
 }
-.heading-news3 .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:hover,
-.heading-news3 .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:hover {
+.big-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:hover,
+.big-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:hover {
   background: rgba(245, 215, 110, 0.9);
 }
-.heading-news3 .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:after,
-.heading-news3 .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:after {
+.big-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-prev:after,
+.big-tiles .owl-wrapper .owl-theme .owl-controls .owl-buttons div.owl-next:after {
   color: #ffffff;
 }
-.heading-news3:hover .owl-wrapper .owl-theme .owl-controls {
+.big-tiles:hover .owl-wrapper .owl-theme .owl-controls {
   opacity: 1;
 }
 .features-today.second-style {

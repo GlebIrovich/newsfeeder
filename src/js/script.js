@@ -1,13 +1,35 @@
 /*jshint jquery:true */
-// set colors
+// set generate HTML
 (function(){
-	$('#container-newsbox section').css('background', '#222');
+	// generate HTML
+	//big Tiles
+	const container = $('#container-newsbox');
+
+	container.append(
+    $('<section/>', {'class': 'big-tiles'}).append(
+        $('<div/>', {'class': 'heading-news-box'}).append(
+            $('<div/>', {'class': 'owl-wrapper'}).append(
+							$('<div/>', {'class': 'owl-carousel', id: 'main-news', 'data-num': '4'})
+						)
+        )
+    )
+		.append(
+	    $('<section/>', {'class': 'small-tiles'}).append(
+          $('<div/>', {'class': 'owl-wrapper'}).append(
+						$('<div/>', {'class': 'owl-carousel', id: 'secondary-news', 'data-num': '5'})
+					)
+    	)
+		)
+	);
+
+	$('#container-newsbox section').css('background', config.feedColor || '#222');
 })()
 
 
 const data = (async function(){
 	const getNews = async () => {
-			const id = 401714040;
+			const id = config.id;
+
 			const url = `https://newsboxbot.herokuapp.com/moduleaccess/${id}/`;
 
 			try {
@@ -24,7 +46,7 @@ const data = (async function(){
 	// remove if array is empty
 	if(data.length === 0) {
 		$('#container-newsbox').remove();
-		$('#myModal').remove();
+		$('.bot-modal').remove();
 		return;
 	}
 
@@ -122,38 +144,41 @@ const data = (async function(){
 	// Modal controls
 	const fillModal = (obj) => {
 		return `
-			<!-- <div class="share-post-box">
-				<h3>${obj.title}</h3>
-			</div> -->
-
-			<div class="article-inpost">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="image-content">
-							<div class="image-place">
-								<img src="${obj.photo}" style="box-shadow: 0 0 15px rgba(0,0,0,0.7); margin-bottom:30px;" alt="">
-							</div>
-						</div>
+		<!-- Modal content -->
+			<div class="bot-modal-content" style="background-color: ${config.modalColor || "#222"}">
+			  <div class="bot-modal-header" style="background-color: ${config.modalColor || "#222"}">
+			    <span class="bot-close" onclick="modalController.closeModal()">&times;</span>
+			    <h2>${obj.title}</h2>
+			  </div>
+			  <div class="bot-modal-body">
+					<div class="bot-modal-img" style="background-color: ${config.modalColor || "#222"}">
+			    	<img src="${obj.photo}">
 					</div>
-				</div>
-			</div>
-
-			<div class="post-content">
-				<h1>${obj.title}</h1>
-				${obj.article}
+			    <div class="bot-modal-article">
+						${obj.article}
+					</div>
+			  </div>
+			  <div class="bot-modal-footer" style="background-color: ${config.modalColor || "#222"}">
+			  </div>
 			</div>
 			`
+	}
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == document.querySelector('.bot-modal')) {
+	        document.querySelector('.bot-modal').style.display = "none";
+	    }
 	}
 	return data.then(data => {
 		// Open the Modal
 		return {
 			openModal(n) {
-				$('#modalPost').empty().prepend(fillModal(data[n]))
-				document.getElementById('myModal').style.display = "block";
+				$('.bot-modal').empty().prepend(fillModal(data[n]))
+				document.querySelector('.bot-modal').style.display = "block";
 			},
 			// Close the Modal
 			closeModal() {
-				document.getElementById('myModal').style.display = "none";
+				document.querySelector('.bot-modal').style.display = "none";
 			}
 		}
 	})
