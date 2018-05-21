@@ -58,6 +58,7 @@ You will only need the _./dist_ folder. Move it to your projects directory.
 
 Now you are set to go. Write to the [NewsFeeder Bot](https://t.me/news_box_bot) and post your articles!
 I encourage you to use file upload instead of photo upload in Telegram since file upload will not compress your pictures. Please use photos with dimensions 360x450. Otherwise, they will be centred and cropped.
+You can use markdown syntax for **the full article text**.
 
 Please feel free to share your feedback!
 
@@ -122,5 +123,6 @@ _/getid_ - возвращает пользовательский ID, котор�
 
 Все готово! Напиши [NewsFeeder Bot](https://t.me/news_box_bot) и публикуй свои новости прямо сейчас!
 Я рекомендую использовать в Телеграме загрузку файлов, а не загрузку фото. Закрузка фото приведет к сжатию ваших изображений и ухудшению качества. Используйте картинки размером 360х450. В противном случае, картинки будут оцентрованы и обрезаны.
+Вы можете использовать markdown синтакс для **полного текста статьи**.
 
 Буду благодарен за ваш feedback!

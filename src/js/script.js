@@ -145,7 +145,9 @@ const data = (async function(){
 
 ((function(data){
 	// skip if no news
-	if(!data) return;
+	if(!data) {
+		return;
+	};
 	// Modal controls
 	const fillModal = (obj) => {
 		return `
@@ -175,6 +177,8 @@ const data = (async function(){
 	    }
 	}
 	return data.then(data => {
+		data.length < 6 ? $('.small-tiles').hide() : $('.small-tiles').show();
+		$('#container-newsbox').show();
 		// Open the Modal
 		return {
 			openModal(n) {
