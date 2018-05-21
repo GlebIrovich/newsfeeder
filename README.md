@@ -1,5 +1,9 @@
+
 # NewsFeeder
 (For Russian version see below)
+## Demo
+A working demo can be found [here](https://cookiehunter22.github.io/newsfeeder/dist/).
+
 ### Purpose
 
 Perhaps, some of you have a blog or a news website. Adding news requires either CMS or at least some basic knowledge of HTML. What if you have none?
@@ -53,6 +57,7 @@ You will only need the _./dist_ folder. Move it to your projects directory.
 | lang | Defines language of the date| [ISO language code](http://www.mathguide.de/info/tools/languagecode.html)|
 
 Now you are set to go. Write to the [NewsFeeder Bot](https://t.me/news_box_bot) and post your articles!
+I encourage you to use file upload instead of photo upload in Telegram since file upload will not compress your pictures. Please use photos with dimensions 360x450. Otherwise, they will be centred and cropped.
 
 Please feel free to share your feedback!
 
@@ -60,6 +65,8 @@ Please feel free to share your feedback!
 
 # NewsFeeder
 (Русская версия)
+## Demo
+Финальную версию можно посмотреть [тут](https://cookiehunter22.github.io/newsfeeder/dist/).
 ## Цель
 
 Возможно, некоторые из вас имеют свой блог или новостной сайт, однако, для добавления новых новостей необходимо иметь Систему управления контентом или хотя бы базовые знания HTML. Но что ели ни того, ни того не имеется?
@@ -114,5 +121,6 @@ _/getid_ - возвращает пользовательский ID, котор�
 | lang | Определяет языковой формат даты| [ISO language code](http://www.mathguide.de/info/tools/languagecode.html)|
 
 Все готово! Напиши [NewsFeeder Bot](https://t.me/news_box_bot) и публикуй свои новости прямо сейчас!
+Я рекомендую использовать в Телеграме загрузку файлов, а не загрузку фото. Закрузка фото приведет к сжатию ваших изображений и ухудшению качества. Используйте картинки размером 360х450. В противном случае, картинки будут оцентрованы и обрезаны.
 
 Буду благодарен за ваш feedback!
