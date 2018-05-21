@@ -3337,7 +3337,7 @@ div.list-post .post-content h2 a:hover {
   padding: 120px 85px 48px;
   margin-bottom: 30px;
   position: relative;
-  background: url('../upload/news-posts/banner.jpg') center center;
+  background: url('./upload/news-posts/1.jpg') center center;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;

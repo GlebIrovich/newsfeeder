@@ -75,16 +75,6 @@ website:    http://www.themepunch.com
 body {
   background: #fafafa;
 }
-#container-newsbox {
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-}
-#container-newsbox.active {
-  opacity: 1;
-}
 p {
   font-size: 14px;
   color: #666666;
@@ -171,19 +161,6 @@ p {
   color: #ffffff;
 }
 /*block wrapper section */
-div.block-content {
-  padding: 30px 15px 60px;
-  margin-left: 224px;
-  margin-right: 305px;
-  position: relative;
-  overflow: hidden;
-  background: #e0e0e0;
-  /* border-left: 1px solid #f0f0f0;
-  border-right: 1px solid #f0f0f0; */
-}
-div.block-content:after {
-  padding: 30px 0 60px;
-}
 /* feature-video style */
 /* latest articles style */
 /* pagination style */
@@ -483,7 +460,7 @@ ul.post-tags li:last-child {
   overflow: hidden;
 }
 .image-post4 img {
-  opacity: 0.4;
+  opacity: 0.8;
   transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
@@ -527,6 +504,7 @@ ul.post-tags li:last-child {
   color: #ccc;
 }
 .image-post4:hover img {
+  opacity: 1;
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
@@ -574,14 +552,6 @@ ul.post-tags li:last-child {
     line-height: 20px;
   }
 }
-@media (max-width: 1199px) {
-  #container-newsbox {
-    overflow: hidden;
-  }
-  div.block-content {
-    margin-left: 0;
-  }
-}
 @media (max-width: 767px) {
   .image-post .hover-box .inner-hover p,
   .image-post .hover-box .inner-hover ul.post-tags {
@@ -590,8 +560,5 @@ ul.post-tags li:last-child {
   .image-post .hover-box .inner-hover h2 {
     margin-bottom: 0;
     font-size: 13px;
-  }
-  div.block-content {
-    margin-right: 0;
   }
 }

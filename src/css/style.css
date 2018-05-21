@@ -533,14 +533,14 @@ header.active .nav-list-container {
 body {
   background: #fafafa;
 }
-#container-newsbox {
+#container {
   opacity: 0;
   transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
 }
-#container-newsbox.active {
+#container.active {
   opacity: 1;
 }
 p {
@@ -901,9 +901,9 @@ div.block-content {
   margin-right: 305px;
   position: relative;
   overflow: hidden;
-  background: #e0e0e0;
-  /* border-left: 1px solid #f0f0f0;
-  border-right: 1px solid #f0f0f0; */
+  background: #ffffff;
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
 }
 div.block-content .advertisement {
   margin-bottom: 30px;
@@ -1092,7 +1092,7 @@ section.feature-video .owl-theme .owl-controls .owl-buttons div.owl-next:hover:a
   font-size: 12px;
 }
 section.small-tiles {
-  /* background: #222222; */
+  background: #222222;
   padding: 10px 0;
 }
 section.small-tiles .owl-wrapper .owl-theme .owl-controls {
@@ -1392,7 +1392,7 @@ section.small-tiles:hover .owl-wrapper .owl-theme .owl-controls {
 /*-------------------------------------------------*/
 .big-tiles {
   padding: 50px 15px 40px;
-  /* background: #222222; */
+  background: #222222;
 }
 .big-tiles .heading-news-box .owl-wrapper .item {
   padding: 0 15px;
@@ -3337,7 +3337,7 @@ div.list-post .post-content h2 a:hover {
   padding: 120px 85px 48px;
   margin-bottom: 30px;
   position: relative;
-  background: url('../upload/news-posts/banner.jpg') center center;
+  background: url('../upload/news-posts/1.jpg') center center;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -5552,7 +5552,7 @@ footer .footer-last-line nav.footer-nav ul li:first-child:before {
   }
 }
 @media (max-width: 1199px) {
-  #container-newsbox {
+  #container {
     overflow: hidden;
   }
   .navbar-default .navbar-right {

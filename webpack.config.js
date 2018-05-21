@@ -33,7 +33,7 @@ module.exports = {
         ]
       },
        {
-         test: /\.(png|woff|woff2|eot|ttf|svg|gif)$/,
+         test: /\.(jpg|png|woff|woff2|eot|ttf|svg|gif)$/,
          loader: 'file-loader?limit=100000',
          options: {
           name: 'assets/[name].[ext]'
