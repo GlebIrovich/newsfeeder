@@ -19,13 +19,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('jquery'),
-        use: [
-          { loader: 'expose-loader', options: 'jQuery' },
-          { loader: 'expose-loader', options: '$' }
-        ]
-      },
-      {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
@@ -39,16 +32,6 @@ module.exports = {
           name: 'assets/[name].[ext]'
         }
        },
-      //  {
-      //   test: /\.js$/,
-      //   exclude: /(node_modules|bower_components)/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: {
-      //       presets: ['@babel/preset-env']
-      //     }
-      //   }
-      // }
    ]
   },
    optimization: {
@@ -63,25 +46,21 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery'
-    }),
 
     new MiniCssExtractPlugin({
-      // both options are optional
       filename: "newsfeeder.min.css",
       chunkFilename: "[id].css"
     }),
 
     new HtmlWebpackPlugin({
       title: 'Custom template',
-      // Load a custom template (lodash by default see the FAQ for details)
+      // Load a custom template
       template: './src/temp.html'
     }),
 
     new CopyWebpackPlugin([
-    { from: 'src/js/newsfeeder.config.js', to: 'newsfeeder.config.js' }
+    { from: 'src/js/newsfeeder.config.js', to: 'newsfeeder.config.js' },
+    { from: 'src/js/jquery-3.3.1.min.js', to: 'jquery-3.3.1.min.js' }
     ])
   ]
 };

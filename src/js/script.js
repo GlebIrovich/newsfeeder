@@ -22,7 +22,8 @@
     	)
 		);
 
-	$('#container-newsbox section').css('background', config.feedColor || '#222');
+	$('#container-newsbox .big-tiles').css('background', config.feedColorMain || '#222');
+	$('#container-newsbox .small-tiles').css('background', config.feedColorSecondary || '#222');
 })()
 
 
@@ -49,8 +50,11 @@ const data = (async function(){
 		$('.bot-modal').remove();
 		return;
 	}
-
+	const setDateFormat = (obj) => {
+		return new Date(obj.date).toLocaleDateString(config.lang, {day: 'numeric', month: 'long', year: 'numeric'})
+	}
 	const insertMain = (obj, index) => {
+		const date = setDateFormat(obj);
 		return `
 		<div class="item">
 			<div class="news-post image-post">
@@ -59,7 +63,7 @@ const data = (async function(){
 					<div class="inner-hover">
 						<h2><a onclick="modalController.openModal(${index})" href="#">${obj.title}</a></h2>
 						<ul class="post-tags">
-							<li><i class="fa fa-clock-o"></i>${new Date(obj.date).toDateString()}</li>
+							<li><i class="fa fa-clock-o"></i>${date}</li>
 						</ul>
 						<p>${obj.description}</p>
 					</div>
@@ -70,6 +74,7 @@ const data = (async function(){
 	}
 
 	const insertSecondary = (obj, index) => {
+		const date = setDateFormat(obj);
 		return `
 		<div class="item">
 			<div class="news-post image-post4">
@@ -77,7 +82,7 @@ const data = (async function(){
 				<div class="hover-box">
 					<h2><a onclick="modalController.openModal(${index})">${obj.title}</a></h2>
 					<ul class="post-tags">
-						<li><i class="fa fa-clock-o"></i>${new Date(obj.date).toDateString()}</li>
+						<li><i class="fa fa-clock-o"></i>${date}</li>
 					</ul>
 				</div>
 			</div>
