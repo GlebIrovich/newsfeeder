@@ -152,7 +152,7 @@ const data = (async function(){
 	const fillModal = (obj) => {
 		return `
 		<!-- Modal content -->
-			<div class="bot-modal-content" style="background-color: ${config.modalColor || "#222"}">
+			<div class="bot-modal-content">
 			  <div class="bot-modal-header" style="background-color: ${config.modalColor || "#222"}">
 			    <span class="bot-close" onclick="modalController.closeModal()">&times;</span>
 			    <h2>${obj.title}</h2>
@@ -164,8 +164,6 @@ const data = (async function(){
 			    <div class="bot-modal-article">
 						${obj.article}
 					</div>
-			  </div>
-			  <div class="bot-modal-footer" style="background-color: ${config.modalColor || "#222"}">
 			  </div>
 			</div>
 			`
