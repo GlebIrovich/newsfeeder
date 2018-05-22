@@ -496,6 +496,7 @@ ul.post-tags li:last-child {
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   color: #ffffff;
+  cursor: pointer;
 }
 .image-post4 .hover-box h2 a:hover {
   color: #f5d76e;

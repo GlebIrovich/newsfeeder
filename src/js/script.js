@@ -59,7 +59,7 @@ const data = (async function(){
 		<div class="item">
 			<div class="news-post image-post">
 				<img src="${obj.photo}" alt="">
-				<div class="hover-box">
+				<div class="hover-box" onclick="modalController.openModal(${index})">
 					<div class="inner-hover">
 						<h2><a onclick="modalController.openModal(${index})" href="#">${obj.title}</a></h2>
 						<ul class="post-tags">
@@ -78,7 +78,7 @@ const data = (async function(){
 		return `
 		<div class="item">
 			<div class="news-post image-post4">
-				<img src="${obj.photo}" style="min-width: 100%; height: 208px; object-fit: cover;" alt="">
+				<img src="${obj.photo}" style="min-width: 100%; height: 208px; object-fit: cover;" alt="" onclick="modalController.openModal(${index})">
 				<div class="hover-box">
 					<h2><a onclick="modalController.openModal(${index})">${obj.title}</a></h2>
 					<ul class="post-tags">
